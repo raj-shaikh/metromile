@@ -1,25 +1,57 @@
-<div>
+<div class="container">
+  <h3>{{(selectedCoverages$ | async)?.name}}</h3>
+
+  <div class="coverage-item">
   <label>Comprehensive Deductible </label>
-  <select>
+  <select (change)="updateSelectedCoverages($event, 'compDeductible')">
     <option *ngFor="let option of compDeductibleOptions$ | async"
+            [selected]="option.value === (selectedCoverages$ | async)?.compDeductible"
             value={{option.value}}>{{option.name}}</option>
   </select>
-  <br>
-  <label>Comprehensive Deductible </label>
-  <select>
+  </div>
+  <div class="coverage-item">
+  <label>Collision Deductible </label>
+  <select (change)="updateSelectedCoverages($event, 'collDeductible')">
     <option *ngFor="let option of colDeductibleOptions$ | async"
+            [selected]="option.value === (selectedCoverages$ | async)?.collDeductible"
             value={{option.value}}>{{option.name}}</option>
   </select>
-  <br>
-  <label>Comprehensive Deductible </label>
-  <select>
+  </div>
+  <div class="coverage-item">
+  <label>Rental Car Reimbursement </label>
+  <select (change)="updateSelectedCoverages($event, 'rentalCar')">
     <option *ngFor="let option of rentalCarOptions$ | async"
+            [selected]="option.value === (selectedCoverages$ | async)?.rentalCar"
             value={{option.value}}>{{option.name}}</option>
   </select>
-  <br>
-  <label>Comprehensive Deductible </label>
-  <select>
+  </div>
+  <div class="coverage-item">
+  <label>Roadside Assistance </label>
+  <select (change)="updateSelectedCoverages($event, 'roadside')">
     <option *ngFor="let option of roadSideOptions$ | async"
+            [selected]="option.value === (selectedCoverages$ | async)?.roadside"
             value={{option.value}}>{{option.name}}</option>
   </select>
+  </div>
+</div>
+
+<div class="container">
+  <h3>Coverage Changes</h3>
+  <div class="coverage-item" *ngIf="(changedCoverages$ | async).compDeductible !== null">
+    <label>Comprehensive Deductible </label>
+    <span>{{(vehicle$ | async)?.compDeductible}}</span> --> <span>{{(changedCoverages$ | async).compDeductible}}</span>
+  </div>
+
+  <div class="coverage-item" *ngIf="(changedCoverages$ | async).collDeductible !== null">
+    <label>Collision Deductible </label>
+    <span>{{(vehicle$ | async)?.collDeductible}}</span> --> <span>{{(changedCoverages$ | async).collDeductible}}</span>
+  </div>
+  <div class="coverage-item" *ngIf="(changedCoverages$ | async).rentalCar !== null">
+    <label>Rental Car Reimbursement </label>
+    <span>{{(vehicle$ | async)?.rentalCar}}</span> --> <span>{{(changedCoverages$ | async).rentalCar}}</span>
+  </div>
+  <div class="coverage-item" *ngIf="(changedCoverages$ | async).roadside !== null">
+    <label>Roadside Assistance </label>
+    <span>{{(vehicle$ | async)?.roadside}}</span> --> <span>{{(changedCoverages$ | async).roadside}}</span>
+  </div>
 </div>

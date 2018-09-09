@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+.app {
+  text-align: center;
+}
+
+.container {
+  width: 40%;
+  margin: 20px auto;
+  border: 1px solid black;
+  padding: 30px;
+}
+
+.coverage-item {
+  display: flex;
+  justify-content: space-between;
+}

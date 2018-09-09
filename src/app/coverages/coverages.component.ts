@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {GetCoverages} from "./coverages.actions";
+import {GetCoverages, SetSelectedCoverages, UpdateSelectedCoverages} from "./coverages.actions";
 import {AppState} from "../reducers/index";
 import {Store, select} from "@ngrx/store";
 import {Observable} from "rxjs";
 import {
   selectCoveragesState, selectCompDeductibleOptions, selectCollDeductibleOptions,
-  selectRentalCarOptions, selectRoadsideOptions
+  selectRentalCarOptions, selectRoadsideOptions, selectVehicleState, selectSelectedCoveragesState
 } from "../app.selectors";
+
+import { combineLatest } from 'rxjs/observable/combineLatest';
+import {take, map} from "rxjs/internal/operators";
 
 @Component({
   selector: 'app-edit-coverages',
@@ -16,6 +19,9 @@ import {
 export class CoveragesComponent implements OnInit {
 
   public coverages$ : Observable<any>;
+  public changedCoverages$ : Observable<any>;
+  public selectedCoverages$ : Observable<any>;
+  private vehicle$ : Observable<any>;
   public compDeductibleOptions$: Observable<any>;
   public colDeductibleOptions$: Observable<any>;
   public rentalCarOptions$: Observable<any>;
@@ -26,12 +32,18 @@ export class CoveragesComponent implements OnInit {
 
   ngOnInit() {
     this.dispatchGetCoverageAction();
+    this.dispatchSetSelectedCoverages();
     this.setSelectors();
+    this.watchForChanges();
   }
 
   private setSelectors(){
     this.coverages$ = this.store.pipe(
       select(selectCoveragesState)
+    );
+
+    this.selectedCoverages$ = this.store.pipe(
+      select(selectSelectedCoveragesState)
     );
 
     this.compDeductibleOptions$ = this.store.pipe(
@@ -53,6 +65,40 @@ export class CoveragesComponent implements OnInit {
 
   private dispatchGetCoverageAction(){
     this.store.dispatch(new GetCoverages());
+  }
+
+  private dispatchSetSelectedCoverages(){
+    this.vehicle$ = this.store.pipe(
+      select(selectVehicleState),
+      take(1)
+    );
+    this.vehicle$.subscribe(selectedCoverages => {
+      this.store.dispatch(new SetSelectedCoverages(selectedCoverages));
+    });
+  }
+
+  public updateSelectedCoverages(event: any, prop: string){
+    const change: any = {};
+    change[prop] = event.target.value;
+    this.store.dispatch(new UpdateSelectedCoverages(change));
+  }
+
+  private watchForChanges(){
+    this.changedCoverages$ = combineLatest(this.selectedCoverages$, this.vehicle$).pipe(
+      map(arr=> {
+        let selectedCoverage, vehicle;
+        [selectedCoverage, vehicle] = arr;
+        const diffObject: any = {};
+        for(let prop in selectedCoverage){
+          if(selectedCoverage[prop] !== vehicle[prop]){
+            diffObject[prop] = selectedCoverage[prop];
+          }else{
+            diffObject[prop] = null;
+          }
+        }
+        return diffObject;
+      })
+    );
   }
 
 }

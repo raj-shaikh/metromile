@@ -1,17 +1,22 @@
-<div>
+<div class="container">
   <h3>{{(vehicle$ | async).name}}</h3>
-  <br>
-  <label>Comprehensive Deductible </label>
-  <span>{{(vehicle$ | async).compDeductible}}</span>
-  <br>
-  <label>Comprehensive Deductible </label>
-  <span>{{(vehicle$ | async).collDeductible}}</span>
-  <br>
-  <label>Comprehensive Deductible </label>
-  <span>{{(vehicle$ | async).rentalCar}}</span>
-  <br>
-  <label>Comprehensive Deductible </label>
-  <span>{{(vehicle$ | async).roadside}}</span>
-  <br>
-  <button routerLink="/edit-coverage">EDIT COVERAGE</button>
+  <div class="coverage-item">
+    <label>Comprehensive Deductible </label>
+    <span>{{(vehicle$ | async).compDeductible}}</span>
+  </div>
+  <div class="coverage-item">
+    <label>Collision Deductible</label>
+    <span>{{(vehicle$ | async).collDeductible}}</span>
+  </div>
+  <div class="coverage-item">
+    <label>Rental Car Reimbursement </label>
+    <span>{{(vehicle$ | async).rentalCar}}</span>
+  </div>
+  <div class="coverage-item">
+    <label>Roadside Assistance </label>
+    <span>{{(vehicle$ | async).roadside}}</span>
+  </div>
+  <div>
+    <button routerLink="/edit-coverage">EDIT COVERAGE</button>
+  </div>
 </div>

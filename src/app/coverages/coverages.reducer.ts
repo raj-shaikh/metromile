@@ -12,3 +12,15 @@ export function coveragesReducer(state: any, action): any {
       return state;
   }
 }
+
+
+export function selectedCoverageReducer(state: any, action): any {
+  switch (action.type) {
+    case CoveragesActionTypes.SetSelectedCoverages :
+      return action.payload;
+    case CoveragesActionTypes.UpdateSelectedCoverages :
+      return {...state, ...action.payload};
+    default :
+      return state;
+  }
+}
