@@ -1,3 +1,17 @@
 <div>
-  <h3> Name : {{(vehicle$ | async).name}}</h3>
+  <h3>{{(vehicle$ | async).name}}</h3>
+  <br>
+  <label>Comprehensive Deductible </label>
+  <span>{{(vehicle$ | async).compDeductible}}</span>
+  <br>
+  <label>Comprehensive Deductible </label>
+  <span>{{(vehicle$ | async).collDeductible}}</span>
+  <br>
+  <label>Comprehensive Deductible </label>
+  <span>{{(vehicle$ | async).rentalCar}}</span>
+  <br>
+  <label>Comprehensive Deductible </label>
+  <span>{{(vehicle$ | async).roadside}}</span>
+  <br>
+  <button routerLink="/edit-coverage">EDIT COVERAGE</button>
 </div>
