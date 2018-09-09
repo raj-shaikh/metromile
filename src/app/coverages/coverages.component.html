@@ -1,0 +1,25 @@
+<div>
+  <label>Comprehensive Deductible </label>
+  <select>
+    <option *ngFor="let option of compDeductibleOptions$ | async"
+            value={{option.value}}>{{option.name}}</option>
+  </select>
+  <br>
+  <label>Comprehensive Deductible </label>
+  <select>
+    <option *ngFor="let option of colDeductibleOptions$ | async"
+            value={{option.value}}>{{option.name}}</option>
+  </select>
+  <br>
+  <label>Comprehensive Deductible </label>
+  <select>
+    <option *ngFor="let option of rentalCarOptions$ | async"
+            value={{option.value}}>{{option.name}}</option>
+  </select>
+  <br>
+  <label>Comprehensive Deductible </label>
+  <select>
+    <option *ngFor="let option of roadSideOptions$ | async"
+            value={{option.value}}>{{option.name}}</option>
+  </select>
+</div>

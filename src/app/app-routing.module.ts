@@ -6,7 +6,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from "./app.component";
 import {VehicleComponent} from "./vehicle/vehicle.component";
-import {EditCoveragesComponent} from "./edit-coverages/edit-coverages.component";
+import {CoveragesComponent} from "./coverages/coverages.component";
 
 const appRoutes: Routes = [
   {
@@ -15,8 +15,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'edit-coverage',
-    component: EditCoveragesComponent
-    //loadChildren: './edit-coverages/edit-coverages.module#EditCoveragesModule'
+    component: CoveragesComponent
+    //loadChildren: './coverages/coverages.module#EditCoveragesModule'
   },
   {
     path: '**',

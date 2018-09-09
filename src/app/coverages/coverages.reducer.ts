@@ -1,5 +1,5 @@
 import coverages from '../../data-source/coverages';
-import {CoveragesActionTypes} from "./edit-coverages.actions";
+import {CoveragesActionTypes} from "./coverages.actions";
 
 /**
  * Created by raj10637 on 9/9/2018.

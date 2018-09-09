@@ -11,13 +11,13 @@ import {StoreRouterConnectingModule} from "@ngrx/router-store";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {reducers, metaReducers} from "./reducers";
 import {AppEffects} from "./app.effects";
-import { EditCoveragesComponent } from './edit-coverages/edit-coverages.component';
+import { CoveragesComponent } from './coverages/coverages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VehicleComponent,
-    EditCoveragesComponent
+    CoveragesComponent
   ],
   imports: [
     BrowserModule,

@@ -13,5 +13,28 @@ export const selectVehicleState = createSelector (
 
 export const selectCoveragesState = createSelector (
   coverageState,
-  vehicle => vehicle
+  coverage => coverage
+);
+
+export const selectCompDeductibleOptions = createSelector(
+  coverageState,
+  coverage => coverage.coverageOptions.filter(item => item.name === 'compDeductible')[0].options
+);
+
+
+export const selectCollDeductibleOptions = createSelector(
+  coverageState,
+  coverage => coverage.coverageOptions.filter(item => item.name === 'collDeductible')[0].options
+);
+
+
+export const selectRentalCarOptions = createSelector(
+  coverageState,
+  coverage => coverage.coverageOptions.filter(item => item.name === 'rentalCar')[0].options
+);
+
+
+export const selectRoadsideOptions = createSelector(
+  coverageState,
+  coverage => coverage.coverageOptions.filter(item => item.name === 'roadside')[0].options
 );
