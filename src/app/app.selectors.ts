@@ -4,8 +4,14 @@ import {createFeatureSelector, createSelector} from "@ngrx/store";
  */
 
 export const vehilceState = createFeatureSelector<any>('vehicle');
+export const coverageState = createFeatureSelector<any>('coverages');
 
 export const selectVehicleState = createSelector (
   vehilceState,
+  vehicle => vehicle
+);
+
+export const selectCoveragesState = createSelector (
+  coverageState,
   vehicle => vehicle
 );

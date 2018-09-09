@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {GetCoverages} from "./edit-coverages.actions";
+import {AppState} from "../reducers/index";
+import {Store, select} from "@ngrx/store";
+import {Observable} from "rxjs";
+import {selectCoveragesState} from "../app.selectors";
 
 @Component({
   selector: 'app-edit-coverages',
@@ -7,9 +12,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditCoveragesComponent implements OnInit {
 
-  constructor() { }
+  public coverages$ : Observable<any>;
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
+    this.dispatchGetCoverageAction();
+    this.setSelectors();
+  }
+
+  private setSelectors(){
+    this.coverages$ = this.store.pipe(
+      select(selectCoveragesState)
+    )
+  }
+
+  private dispatchGetCoverageAction(){
+    this.store.dispatch(new GetCoverages());
   }
 
 }
