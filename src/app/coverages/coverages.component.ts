@@ -10,6 +10,7 @@ import {
 
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import {take, map} from "rxjs/internal/operators";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-edit-coverages',
@@ -28,7 +29,8 @@ export class CoveragesComponent implements OnInit {
   public roadSideOptions$: Observable<any>;
 
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>,
+              private route: Router) { }
 
   ngOnInit() {
     this.dispatchGetCoverageAction();
@@ -99,6 +101,15 @@ export class CoveragesComponent implements OnInit {
         return diffObject;
       })
     );
+  }
+
+  public onSaveChangeClick(){
+    this.route.navigate(['/vehicle']);
+  }
+
+  public onCancelChangesClick(){
+    this.dispatchSetSelectedCoverages();
+    this.route.navigate(['/vehicle']);
   }
 
 }

@@ -54,4 +54,10 @@
     <label>Roadside Assistance </label>
     <span>{{(vehicle$ | async)?.roadside}}</span> --> <span>{{(changedCoverages$ | async).roadside}}</span>
   </div>
+  <div class="margin">
+    <button (click)="onSaveChangeClick()" routerLink="/vehicle">SAVE CHANGES</button>
+  </div>
+  <div class="margin">
+    <button (click)="onCancelChangesClick()" routerLink="/vehicle">CANCEL CHANGES</button>
+  </div>
 </div>

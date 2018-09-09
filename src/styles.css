@@ -11,6 +11,11 @@
 }
 
 .coverage-item {
+  margin: 10px auto;
   display: flex;
   justify-content: space-between;
+}
+
+.margin{
+  margin: 10px auto;
 }
